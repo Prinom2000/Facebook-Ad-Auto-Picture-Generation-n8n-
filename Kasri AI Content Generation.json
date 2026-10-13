@@ -1,0 +1,1247 @@
+{
+  "name": "Kasri AI Content Generation",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "edit",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-image-2.5-sunburst-2026-09-08",
+          "mode": "list",
+          "cachedResultName": "GPT-IMAGE-2.5-SUNBURST-2026-09-08"
+        },
+        "prompt": "=## ROLE\n\nYou are creating ONE professional Facebook advertisement image (1024x1024) for the Bangladeshi natural pain-relief brand \"Kasri\" (কাসরি).\n\n## CAMPAIGN INPUT\n\n* TOPIC (main concept of the ad): {{ $('Limit').item.json.Topic }}\n* PRODUCT TYPE: {{ $('Limit').item.json['Product type'] }}\n* MODEL: {{ $('Limit').item.json.Model }}\n* LANGUAGE: {{ ['english','en','eng'].includes(String($json.Language).toLowerCase().trim()) ? 'English' : 'Bangla' }}\n\n## BRAND STYLE\n\n* Fresh natural green is the brand color (matching the Kasri logo), with clean white and warm neutral tones. Use a deep dark green and a bold red as accent colors for text.\n* Headline style: NOT fixed. Choose the text style that best matches the TOPIC, the background and the mood of the image (see TEXT STYLE VARIETY below). The red-highlight-label style is only ONE of several allowed styles and must NOT be used every time.\n* Bold, premium, trustworthy, warm and family-friendly. Suitable for a Bangladeshi audience.\n* The concept may be creative (for example a dramatic or playful metaphor scene) or realistic (home, park, family, village), depending on the TOPIC.\n\n## CREATIVE DIRECTION — DERIVE EVERYTHING FROM THE TOPIC\n\nThe TOPIC is the central idea of this image. Use it to decide:\n\n* The scene, setting, background, mood, lighting and color palette (for example: a calm home, a morning park walk, a family gift moment, a village, a sports or boxing-ring metaphor)\n* How the product is presented (held in hand, placed in the foreground, or shown as a hero element)\n* The pose, expression, age, modest clothing and activity of the model (if a model is used). For pain topics, a person may show mild discomfort, with a subtle soft red glow on the sore area at most.\n* How much text the layout needs: usually one short headline plus one product-name line. Keep every line short and simple.\n* The text style, position and alignment, chosen to suit the scene (see TEXT STYLE VARIETY).\n\nRules:\n\n* The product must remain clearly visible and sharp.\n* Extra elements must never cover or compete with the product, the logo, the contact bar or the text.\n* Do NOT show any other real brand, competitor logo or real brand name. A generic unbranded bottle is fine if the concept needs one.\n* Keep the layout clean and uncluttered.\n* Everything must look like a real, high-quality commercial photograph with professional graphic design.\n\n---\n\n## REFERENCE IMAGES — ABSOLUTE PRIORITY\n\nTwo reference images are provided:\n\n* IMAGE 1 = the brand LOGO (Kasri)\n* IMAGE 2 = the PRODUCT ({{ $('Limit').item.json['Product type'] }}), exact packaging. If this reference shows both a bottle and a box together, keep them together exactly as shown.\n\nReproduce both with 100% fidelity.\n\nPRODUCT (IMAGE 2):\n\n* Use the product exactly as it appears. Do NOT redesign, redraw, recolor or reinterpret the bottle, cap, box or label.\n* Do NOT change the shape, proportions, label text, QR code or graphics.\n* Do NOT invent a different or similar-looking product.\n* Only place it naturally into the scene with correct lighting, a soft realistic shadow and correct perspective. The label must stay sharp and readable.\n\nLOGO (IMAGE 1):\n\n* Use the logo exactly as it appears. Do NOT redraw, recolor, distort, stretch, crop, or add effects or shadows.\n* Place it flat, clean and fully visible.\n\nPLACEMENT:\n\n* LOGO: top-left corner, comfortable margin from the edges.\n* CONTACT BAR: bottom-center, along the bottom edge (see the fixed text section). Nothing may overlap it.\n* PRODUCT: {{ ['none','no','product only','only product','product_only'].includes(String($('Limit').item.json.Model).toLowerCase().trim()) ? 'centered as the main hero of the image, occupying about 40-50% of the image width, front-facing, clearly above the contact bar.' : 'held naturally in the model\\'s hands, or placed in the bottom-left foreground, front-facing, occupying about 20-30% of the image width, clearly above the contact bar. It must NOT overlap the contact bar.' }}\n* Nothing may overlap the logo or the product label.\n\n---\n\n## MODEL\n\n{{ ['female','woman','f'].includes(String($('Limit').item.json.Model).toLowerCase().trim()) ? `Include ONE Bangladeshi woman as the model.\n\nShe must have a natural, healthy, even complexion with realistic Bangladeshi facial features, natural skin texture and a photorealistic look. Do NOT make her skin plastic, porcelain, grey or CGI-looking.\nShe must wear modest, culturally appropriate clothing (for example salwar kameez, saree, or hijab) that matches the TOPIC. Her age, expression and activity must match the TOPIC.\nKeep her facial identity and overall look consistent across the campaign.` : ['male','man','m'].includes(String($('Limit').item.json.Model).toLowerCase().trim()) ? `Include ONE Bangladeshi man as the model.\n\nHe must have a natural, healthy complexion with realistic Bangladeshi facial features, natural skin texture and a photorealistic look. No plastic or over-retouched look.\nHis clothing (for example panjabi, casual shirt, sportswear), age, expression and activity must match the TOPIC.\nKeep his facial identity and overall look consistent across the campaign.` : ['none','no','product only','only product','product_only'].includes(String($('Limit').item.json.Model).toLowerCase().trim()) ? `Do NOT include any person, face, hands or body parts. This is a product-only advertisement. Build the scene using the product, a fitting background and topic-related props only (for example herbs, leaves, a wooden surface).` : `The model is not specified. Decide from the TOPIC whether the image is best with a Bangladeshi man, a Bangladeshi woman, a family group (for example parents and an adult child), or product only (no person).\nAny person must look natural, healthy and photorealistic, with realistic Bangladeshi features, natural skin texture and modest, culturally appropriate clothing.` }}\n\n---\n\n## CONTENT SAFETY (health product)\n\n* Never show graphic injuries, blood, medical or surgical imagery, or nudity.\n* Never write that the product cures, treats or guarantees results, and never write numbers like \"100%\" or \"guaranteed\" or \"permanent\".\n* Keep claims soft and general (comfort, relief, care). Do not diagnose the viewer.\n\n---\n\n## TEXT & TYPOGRAPHY — ABSOLUTE PRIORITY\n\n{{ ['english','en','eng'].includes(String($json.Language).toLowerCase().trim()) ? `LANGUAGE RULE: ENGLISH ONLY.\n\nEVERY piece of text that you add to this image must be written in English only. Do NOT use any Bengali characters in the added text. Do NOT mix Bengali and English.\n(The text printed on the product packaging and in the logo comes from the reference images and must stay exactly as it is.)` : `LANGUAGE RULE: BANGLA ONLY.\n\nEVERY piece of text that you add to this image must be written in Bengali script only. Do NOT use English words in the added text. The only exceptions are the phone numbers and the website address in the contact bar.\n(The text printed on the product packaging and in the logo comes from the reference images and must stay exactly as it is.)` }}\n\n### FIXED CONTACT BAR (appears on EVERY image, exactly as written)\n\nAlong the bottom edge, bottom-center, place a slim, clean, rounded green bar with white text and simple white icons (a phone icon and a globe icon). Arrange it in a tidy horizontal layout: the phone icon with the two phone numbers on the left, a thin vertical divider, and the globe icon with the website on the right. The order label goes as a small bold heading at the start of the bar.\n\nThe bar contains exactly this text:\n\n{{ ['english','en','eng'].includes(String($json.Language).toLowerCase().trim()) ? 'Order Now' : 'অর্ডার করুন' }}\n01613-679668\n01841-976624\nwww.kasrioil.com\n\nRules for the contact bar:\n\n* The text inside the bar is LOCKED. Reproduce every character exactly. Do not change digits, hyphens, dots or letters.\n* The bar must be fully inside the image with a comfortable margin, with no cropping and nothing overlapping it.\n* Digits are written in English numerals exactly as above.\n* The contact bar design stays the same on every image (it is the only fixed text element).\n\n### TEXT STYLE VARIETY — CHOOSE ONE STYLE PER IMAGE\n\nLook at the TOPIC and the scene you designed, then pick ONE of the headline styles below that fits best. Do NOT default to Style A every time. Vary the style, the text position, the alignment and the font feel from image to image.\n\nSTYLE A — Red highlight label (classic): one key word inside a solid red rounded label with white text, the other words in deep green or white bold type. Best for pain-focused or urgent topics.\n\nSTYLE B — Clean bold text, no labels: large bold headline in deep green or white directly on a soft or darkened area of the background, with a subtle shadow or outline for readability. Best for calm, home, park or family scenes.\n\nSTYLE C — Underline / brush-stroke highlight: key word with a hand-drawn green or yellow brush-stroke or underline behind it. Best for friendly, warm, natural or herbal scenes.\n\nSTYLE D — Banner / ribbon: headline on a green or white ribbon, banner or badge shape. Best for offers, gifts, festive or family-gift topics.\n\nSTYLE E — Two-tone text: first line in white, second line in bright green or yellow (or the reverse), no boxes. Best for dark, dramatic or night backgrounds.\n\nSTYLE F — Large stacked headline with a small tagline: very big 2-3 line headline plus a small supporting line, in an elegant, modern layout. Best for premium, minimal, product-only images.\n\nRules for choosing and placing text:\n\n* Pick the style from the TOPIC and the background brightness: dark background -> light text; bright background -> deep green or dark text.\n* Vary the position: top-right, top-center, left side, right side, or over a clean wall/sky/empty area. Not always the top-right.\n* Vary the alignment: left, center or right aligned, depending on the composition.\n* The product-name line may also change: a dark green rounded label, plain text with a thin line, a small badge, or part of the ribbon. It does not always need a green pill.\n* The text must always stay readable, with strong contrast against the background.\n* Keep the brand colors (green, white, deep green, red accent), but use them differently across styles.\n* Text must never cover the model's face, the product, the logo or the contact bar.\n\n### AD COPY\n\n{{ $('Limit').item.json.Headline ? `The following text is LOCKED and must be reproduced EXACTLY, character by character:\n\nMAIN HEADLINE: **${$('Limit').item.json.Headline}**\nPRODUCT NAME LINE: **${$('Limit').item.json.Subheadline}**\n\nDisplay style: choose freely from TEXT STYLE VARIETY above to suit the image. The words stay locked; only the visual style, color treatment, position and alignment may vary.` : (['english','en','eng'].includes(String($json.Language).toLowerCase().trim()) ? `Based on the TOPIC, write ONE short, natural, correct English headline (a key word may be highlighted if the chosen style uses highlighting) and ONE product-name line (Kasri Pain Relief Oil). Use only simple, correctly spelled, commonly used English words.` : `Based on the TOPIC, write ONE short, natural, correct Bengali headline (a key word may be highlighted if the chosen style uses highlighting) and ONE product-name line (কাসরি পেইন রিলিফ অয়েল). Use only simple, correctly spelled, commonly used Bengali words. Fewer words is safer for accurate rendering.`) }}\n\n### TEXT LOCK RULES\n\nTreat every character of the final text as fixed source text.\n\nDO NOT:\n\n* Change, add, remove or replace any letter, vowel sign, consonant or conjunct (যুক্তাক্ষর)\n* Change spelling, translate or paraphrase the locked text\n* Switch to a different language than the LANGUAGE RULE above\n* Use Hindi/Devanagari\n* Generate pseudo-letters, decorative unreadable text, or random/gibberish text\n\n### TYPOGRAPHY QUALITY\n\nUse a clean, bold, highly legible advertising font suited to the language and to the chosen style. Characters must be correctly shaped, properly joined and spaced, clearly readable and high resolution. Place text in clean areas that do not cover the product, logo, contact bar or the model's face. Before producing the final image, internally verify every word.\n\n### IMPORTANT FALLBACK\n\nIf you cannot render any text with 100% accuracy, DO NOT invent or approximate characters. Leave that text area completely clean and empty. A clean empty area is ALWAYS preferable to incorrect text. The visual design, product, logo and composition must remain unchanged.",
+        "images": {
+          "values": [
+            {
+              "binaryPropertyName": "logo"
+            },
+            {
+              "binaryPropertyName": "Product"
+            }
+          ]
+        },
+        "quality": "high",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        -560,
+        -1632
+      ],
+      "id": "785a0bf9-532c-4654-821b-330b3a31cb5f",
+      "name": "Edit image",
+      "credentials": {
+        "openAiApi": {
+          "id": "aBJTNhj3LPDVM39W",
+          "name": "OpenAI account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -784,
+        -1632
+      ],
+      "id": "faf19264-a217-48aa-949c-c9bc04625dfd",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1l6aoYkRw0PerGs7kESMjShvUNrriHpiv",
+          "mode": "list",
+          "cachedResultName": "Kasri logo",
+          "cachedResultUrl": "https://drive.google.com/file/d/1l6aoYkRw0PerGs7kESMjShvUNrriHpiv/view?usp=drivesdk"
+        },
+        "options": {
+          "binaryPropertyName": "logo",
+          "fileName": "logo"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1168,
+        -1696
+      ],
+      "id": "1196fa0f-e6ae-4b46-bc6b-0b00ada10ce5",
+      "name": "Download logo",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FkDT1jLNlB8M4pku",
+          "name": "Google Drive account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10
+            },
+            {
+              "triggerAtHour": 20
+            }
+          ]
+        }
+      },
+      "id": "b74516a6-eecd-4b5e-bfe8-b42328956c9c",
+      "name": "Daily 10 AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2384,
+        -1632
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1eDAcQLK_EtLHlF7Fm5lS-91Qwo22xbF0Z3UqfOtciYI",
+          "mode": "list",
+          "cachedResultName": "AI Content Generation→Facebook",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eDAcQLK_EtLHlF7Fm5lS-91Qwo22xbF0Z3UqfOtciYI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1120425396,
+          "mode": "list",
+          "cachedResultName": "Kasri",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eDAcQLK_EtLHlF7Fm5lS-91Qwo22xbF0Z3UqfOtciYI/edit#gid=1120425396"
+        },
+        "options": {}
+      },
+      "id": "dd8b769d-70fa-439c-a9ef-d96e4e50eb49",
+      "name": "Read Content Calendar",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -2176,
+        -1632
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZgmuvzLGYN1rdAcN",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {
+          "binaryPropertyName": "Product",
+          "fileName": "Product"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1072,
+        -1552
+      ],
+      "id": "317ec990-3ffd-453f-812b-045a82971e5e",
+      "name": "Download product1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FkDT1jLNlB8M4pku",
+          "name": "Google Drive account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "={{ $json['Product type'] }}",
+        "filter": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1312,
+        -1536
+      ],
+      "id": "fb98cc75-0af7-4718-993f-fdb2e7630eda",
+      "name": "Search files and folders",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FkDT1jLNlB8M4pku",
+          "name": "Google Drive account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8e523508-1f86-4da7-b7e3-9a999bd24451",
+              "leftValue": "={{ $json.Status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1984,
+        -1696
+      ],
+      "id": "0eeedc32-2918-463c-87ff-674d327d5888",
+      "name": "new?"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -1728,
+        -1712
+      ],
+      "id": "0a52cdc2-3e55-40e1-b1ea-cd37a9ece50a",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Limit').item.json.row_number }} {{ $('Limit').item.json['Product type'] }} Kasri",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1qkEhXhFfmLEOQ-DM719QuucMpcjVMv1v",
+          "mode": "list",
+          "cachedResultName": "Generated Image",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1qkEhXhFfmLEOQ-DM719QuucMpcjVMv1v"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -80,
+        -1744
+      ],
+      "id": "a07f3347-bbde-40d5-9887-61a5feb74d9b",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FkDT1jLNlB8M4pku",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1eDAcQLK_EtLHlF7Fm5lS-91Qwo22xbF0Z3UqfOtciYI",
+          "mode": "list",
+          "cachedResultName": "AI Content Generation→Facebook",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eDAcQLK_EtLHlF7Fm5lS-91Qwo22xbF0Z3UqfOtciYI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1120425396,
+          "mode": "list",
+          "cachedResultName": "Kasri",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eDAcQLK_EtLHlF7Fm5lS-91Qwo22xbF0Z3UqfOtciYI/edit#gid=1120425396"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": "Uploaded",
+            "row_number": "={{ $('Limit').item.json.row_number }}",
+            "Post Link": "=https://www.facebook.com/{{ $json.post_id }}",
+            "Date & Time": "={{ $now.setZone('Asia/Dhaka').toFormat('dd MMM yyyy, hh:mm a') }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Product type",
+              "displayName": "Product type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Model",
+              "displayName": "Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Language",
+              "displayName": "Language",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Generated caption",
+              "displayName": "Generated caption",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Generated image link",
+              "displayName": "Generated image link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Post Link",
+              "displayName": "Post Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Date & Time",
+              "displayName": "Date & Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1376,
+        -1840
+      ],
+      "id": "2ed758d1-ed98-4049-ab3f-1b6d2b34aab1",
+      "name": "Upload image in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZgmuvzLGYN1rdAcN",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v21.0/534708103049392/photos",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "source",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "message",
+              "value": "={{ $json.caption }}"
+            },
+            {
+              "name": "access_token",
+              "value": "EAAYfbHx36QsBShdX0buoTYEcQ0hecf5l5oBclwZBqzG1AtkYxbuKMFuv8bxYytFfwDkPvgsTQnK4J8ZAa6pabT1u1k1uWUZCeHU48vEt7aOSjf4IgjmN4ms5TZCsjM9eYcGVlb93v4IDdleOdMkdB3z9YNQiiiDZCfpxmsTXsCgeKZCLbBZBZB2d49YAANDM7KVpJPb0ReZBWCo3U8XtKEcgY"
+            },
+            {
+              "name": "published",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        1184,
+        -1760
+      ],
+      "id": "0631207b-853f-4b7b-987e-fa91564adcb8",
+      "name": "HTTP Request",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const caption = $('Code in JavaScript').first().json.caption;\n\n// Je node ta run hoyeche, oitar binary nibe\nlet binary;\n\ntry {\n  const b1 = $('Resize Image').first().binary;\n  if (b1 && Object.keys(b1).length) binary = b1;\n} catch (e) {}\n\nif (!binary) {\n  try {\n    const b2 = $('Resize Image1').first().binary;\n    if (b2 && Object.keys(b2).length) binary = b2;\n  } catch (e) {}\n}\n\nif (!binary) {\n  throw new Error('Resize Image ba Resize Image1 kono node theke binary pawa jayni');\n}\n\nreturn [{\n  json: {\n    caption,\n    row_number: $('Upload image in sheet').first().json.row_number\n  },\n  binary\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        -1760
+      ],
+      "id": "dd16ff3f-904e-4cef-9b0b-995ad1f8c152",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1eDAcQLK_EtLHlF7Fm5lS-91Qwo22xbF0Z3UqfOtciYI",
+          "mode": "list",
+          "cachedResultName": "AI Content Generation→Facebook",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eDAcQLK_EtLHlF7Fm5lS-91Qwo22xbF0Z3UqfOtciYI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1120425396,
+          "mode": "list",
+          "cachedResultName": "Kasri",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eDAcQLK_EtLHlF7Fm5lS-91Qwo22xbF0Z3UqfOtciYI/edit#gid=1120425396"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": "Generated",
+            "Generated caption": "={{ $json.caption }}",
+            "Generated image link": "={{ $('Upload file').item.json.webViewLink }}",
+            "row_number": "={{ $('Limit').item.json.row_number }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Product type",
+              "displayName": "Product type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Model",
+              "displayName": "Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Language",
+              "displayName": "Language",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Generated caption",
+              "displayName": "Generated caption",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Generated image link",
+              "displayName": "Generated image link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Post Link",
+              "displayName": "Post Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Date & Time",
+              "displayName": "Date & Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        736,
+        -1760
+      ],
+      "id": "4e25d0d2-d264-4c92-a17a-0588964cde0a",
+      "name": "Upload image in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZgmuvzLGYN1rdAcN",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $input.first().json.output[0].content[0].text.trim();\nconst lang = String($('Limit').first().json.Language || '').toLowerCase().trim();\nconst isEnglish = ['english', 'en', 'eng'].includes(lang);\n\nconst footer = isEnglish\n  ? `Call / WhatsApp to order: 01613-679668, 01841-976624\nOr contact us via inbox\nVisit: www.kasrioil.com`\n  : `অর্ডার করতে কল / হোয়াটসঅ্যাপ করুন: 01613-679668, 01841-976624\nঅথবা ইনবক্সে যোগাযোগ করুন\nভিজিট করুন: www.kasrioil.com`;\n\nreturn [{ json: { caption: text + '\\n\\n' + footer } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        512,
+        -1760
+      ],
+      "id": "b9f13e9d-757c-45a8-9bcd-8d2e5cea09e3",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5.6-luna",
+          "mode": "list",
+          "cachedResultName": "GPT-5.6-LUNA"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=## ROLE\n\nYou are a social media copywriter for the Bangladeshi natural pain-relief brand \"Kasri\" (কাসরি).\n\nYour task is to write ONE short Facebook post caption for an advertisement image.\n\n## CAMPAIGN INPUT\n\n- TOPIC (main concept of the ad): {{ $('Limit').item.json.Topic }}\n- PRODUCT TYPE: {{ $('Limit').item.json['Product type'] }}\n- MODEL: {{ $('Limit').item.json.Model }}\n- LANGUAGE: {{ ['english','en','eng'].includes(String($('Limit').item.json.Language).toLowerCase().trim()) ? 'English' : 'Bangla' }}\n- Quiz or Normal picture: {{ $('Limit').item.json['Quiz or Normal picture'] }}\n\n## MAIN CAPTION STRUCTURE\n\nKeep the caption VERY SIMPLE, SHORT, NATURAL and EASY TO UNDERSTAND.\n\nFollow this exact flow:\n\nHOOK QUESTION → KASRI ANSWER/SOLUTION → SAFETY NOTE → CTA\n\n### 1. HOOK QUESTION\n\nThe FIRST line MUST be a short, interesting and relatable question.\n\nThe question MUST be directly related to the TOPIC.\n\nExamples:\n\n\"হাঁটুর ব্যথায় উঠে দাঁড়াতেই কষ্ট পাচ্ছেন?\"\n\n\"সারাদিন কাজের পর একটু আরাম চান?\"\n\n\"বাবার আরামের জন্য একটু যত্ন কি দরকার নেই?\"\n\nThe question should create a natural reason for the next line.\n\nDO NOT ask medical diagnosis questions like:\n\n\"আপনার কি কোনো রোগ আছে?\"\n\"আপনার কি এই রোগ হয়েছে?\"\n\n### 2. KASRI ANSWER / SOLUTION\n\nThe SECOND line MUST directly answer or respond to the question from line 1.\n\nMention Kasri Pain Relief Natural Oil naturally.\n\nKeep it short and simple.\n\nExample:\n\n\"কাসরি তেল প্রাকৃতিক উপাদানে মৃদু ম্যাসাজে স্বস্তি পেতে সাহায্য করে। 🌿\"\n\nDo NOT write a long explanation.\n\nDo NOT introduce an unrelated topic.\n\n### 3. SAFETY NOTE\n\nIf the TOPIC involves pain, discomfort, or an ongoing problem, add a short safety note.\n\nExample:\n\n\"ব্যথা দীর্ঘস্থায়ী হলে ডাক্তারের পরামর্শ নিন। 🙏\"\n\nIf it is not relevant, you may skip this line.\n\n### 4. CALL TO ACTION\n\nEnd with ONE short and natural CTA.\n\nExamples:\n\n\"আরাম পেতে কাসরি তেল অর্ডার করুন।\"\n\n\"দৈনন্দিন যত্নে কাসরি তেল বেছে নিন। 🌿\"\n\n\"প্রিয়জনের যত্নে কাসরি তেল অর্ডার করুন। 💚\"\n\nThe CTA must be related to the TOPIC.\n\n## MOST IMPORTANT WRITING RULE\n\nThe caption must feel like ONE connected thought.\n\nThe first question should naturally lead to the Kasri answer.\n\nDO NOT write separate or random sentences.\n\nUse this simple logic:\n\nQuestion\n↓\nKasri as the answer\n↓\nSafety note if needed\n↓\nCTA\n\n## SIMPLICITY RULE\n\nKeep the writing VERY SIMPLE.\n\n- Use short sentences.\n- Use common everyday words.\n- Avoid complicated vocabulary.\n- Avoid long explanations.\n- Avoid storytelling unless the TOPIC specifically requires it.\n- Avoid unnecessary emotional descriptions.\n- Avoid repeating the same idea.\n- Do not make the caption sound like an article.\n- Do not make every caption sound the same.\n- Keep the caption natural and human.\n\nPrefer 4 short lines.\n\nTarget length: approximately 30–55 words.\n\n## LANGUAGE RULES\n\nWrite ONLY in the requested LANGUAGE.\n\nIf LANGUAGE is Bangla:\n- Use Bengali script only.\n- Do NOT use English words.\n- Do NOT mix Bangla and English.\n\nIf LANGUAGE is English:\n- Use English only.\n- Do NOT use Bangla words.\n\nUse simple and commonly used words.\n\n## TONE\n\nKeep the tone:\n\n- Warm\n- Caring\n- Natural\n- Trustworthy\n- Family-friendly\n- Simple\n\nFor family or parent-related TOPIC:\nFocus on care, love and comfort.\n\nFor sports or active-life TOPIC:\nFocus on movement, activity and daily comfort.\n\n## EMOJI RULE\n\nUse 2–4 relevant emojis.\n\nExamples:\n\n🌿 💚 🙏 👨‍👦 👩‍👧 ✨\n\nPlace emojis naturally.\n\nDo NOT use too many emojis.\n\n## PRODUCT RULE\n\nMention the product naturally as:\n\n\"কাসরি তেল\"\n\nor\n\n\"Kasri Pain Relief Natural Oil\"\n\ndepending on the requested LANGUAGE.\n\nDo NOT force the product into the caption if the TOPIC does not require it, but normally include it as the answer/solution.\n\n## SAFETY RULES\n\n- Do NOT claim that Kasri cures any disease.\n- Do NOT claim that Kasri treats any medical condition.\n- Do NOT claim that Kasri prevents any disease.\n- Do NOT guarantee results.\n- Do NOT use words such as:\n  \"100%\"\n  \"Guaranteed\"\n  \"Permanent\"\n  \"সম্পূর্ণ নিরাময়\"\n  \"গ্যারান্টি\"\n  \"চিরতরে\"\n\n- Do NOT diagnose the reader.\n- Do NOT make medical diagnosis questions.\n- Do NOT disparage or mention competitors.\n- Do NOT invent prices.\n- Do NOT invent discounts.\n- Do NOT invent offers.\n- Do NOT invent certifications.\n- Do NOT invent testimonials.\n- If the topic involves ongoing or severe pain, gently recommend consulting a doctor if the problem continues.\n- Do NOT include phone numbers.\n- Do NOT include website URLs.\n- Do NOT include contact details.\n- Do NOT include hashtags.\n\n## QUIZ / NORMAL PICTURE RULE\n\nIf \"Quiz or Normal picture\" indicates a NORMAL picture:\n\nWrite a normal promotional/caring caption using the structure:\n\nQuestion → Kasri answer → Safety if needed → CTA\n\nIf \"Quiz or Normal picture\" indicates a QUIZ:\n\nMake the FIRST line an interesting quiz-style question related to the TOPIC.\n\nKeep the quiz very simple and engaging.\n\nThen naturally connect the answer to Kasri when appropriate.\n\nDo NOT make the quiz complicated.\n\n## TOPIC RULE\n\nThe TOPIC is the main idea of the advertisement.\n\nThe entire caption must be based on the TOPIC.\n\nDo NOT introduce unrelated benefits, ingredients, situations, people or problems that are not connected to the TOPIC.\n\nFor example:\n\nIf TOPIC is about father's knee discomfort:\n→ Ask about father's comfort.\n→ Mention Kasri as a gentle massage option.\n→ Add doctor advice if needed.\n→ End with a caring CTA.\n\nIf TOPIC is about active lifestyle:\n→ Ask a relatable activity/comfort question.\n→ Mention Kasri naturally.\n→ End with a simple CTA.\n\n## FINAL QUALITY CHECK\n\nBefore generating the final answer, internally check:\n\n1. Is the first line a short interesting question?\n2. Is the question directly related to TOPIC?\n3. Does the second line naturally answer the question?\n4. Is Kasri mentioned naturally?\n5. Is every line connected to the previous line?\n6. Is the caption simple and short?\n7. Is the language completely consistent?\n8. Are there 2–4 relevant emojis?\n9. Are there no prohibited medical claims?\n10. Is there a short CTA at the end?\n11. Is there no hashtag?\n12. Is there no phone number, website or contact information?\n\n## OUTPUT FORMAT\n\nOutput ONLY the final caption text.\n\nDo NOT output:\n\n- Title\n- \"Caption:\"\n- Explanation\n- Notes\n- Bullet points\n- Quotation marks\n- Analysis\n- Any extra text\n\n## EXAMPLE OF DESIRED STYLE\n\nহাঁটুর ব্যথায় উঠে দাঁড়াতেই কষ্ট পাচ্ছেন?\n\nকাসরি তেল প্রাকৃতিক উপাদানে মৃদু ম্যাসাজে স্বস্তি পেতে সাহায্য করে। 🌿\n\nব্যথা দীর্ঘস্থায়ী হলে ডাক্তারের পরামর্শ নিন। 🙏\n\nআরাম পেতে কাসরি তেল অর্ডার করুন।"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        144,
+        -1744
+      ],
+      "id": "229e01de-15f6-455b-934a-b28ac53c3d36",
+      "name": "Message a model",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "openAiApi": {
+          "id": "aBJTNhj3LPDVM39W",
+          "name": "OpenAI account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "6209453713",
+        "text": "=Error on Sheet node : {{ $workflow.name }}\n\nView Execution: https://n8n-hd2s.srv1946204.hstgr.cloud/workflow/{{ $workflow.id }}/executions/{{ $execution.id }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -1728,
+        -1552
+      ],
+      "id": "dfd5f07c-2717-4270-822d-bc46883acaea",
+      "name": "Send a text message",
+      "webhookId": "0c684a75-bb66-47e2-9501-d072e05f80c1",
+      "credentials": {
+        "telegramApi": {
+          "id": "PathvQNopc8G3lpJ",
+          "name": "Telegram bot for error Message"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "6209453713",
+        "text": "=Error on Drive node : {{ $workflow.name }}\n\nView Execution: https://n8n-hd2s.srv1946204.hstgr.cloud/workflow/{{ $workflow.id }}/executions/{{ $execution.id }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -784,
+        -1456
+      ],
+      "id": "e5014008-ec35-46b0-8fdf-798381da8462",
+      "name": "Send a text message1",
+      "webhookId": "140d6ec3-63f6-4178-b52f-3a784f46fdd3",
+      "credentials": {
+        "telegramApi": {
+          "id": "PathvQNopc8G3lpJ",
+          "name": "Telegram bot for error Message"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "6209453713",
+        "text": "=Error on GPT node : {{ $workflow.name }}\n\nView Execution: https://n8n-hd2s.srv1946204.hstgr.cloud/workflow/{{ $workflow.id }}/executions/{{ $execution.id }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        -1504
+      ],
+      "id": "bd5eceb0-013e-4833-882e-d38a4b3380a7",
+      "name": "Send a text message2",
+      "webhookId": "fd345a7f-7f21-4845-bee7-82f59b3f293e",
+      "credentials": {
+        "telegramApi": {
+          "id": "PathvQNopc8G3lpJ",
+          "name": "Telegram bot for error Message"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "6209453713",
+        "text": "=Error on FB node : {{ $workflow.name }}\n\nView Execution: https://n8n-hd2s.srv1946204.hstgr.cloud/workflow/{{ $workflow.id }}/executions/{{ $execution.id }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1376,
+        -1664
+      ],
+      "id": "be2b8446-22cf-426a-89f3-b07da314546f",
+      "name": "Send a text message3",
+      "webhookId": "c458a6b0-a036-41a5-8e31-2069ed5267cc",
+      "credentials": {
+        "telegramApi": {
+          "id": "PathvQNopc8G3lpJ",
+          "name": "Telegram bot for error Message"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -1984,
+        -1552
+      ],
+      "id": "fd536ca3-d5a2-4e7b-858f-ba98a6bb3219",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "308f3ebf-3341-4fc3-89f3-8a8d411e0712",
+              "leftValue": "={{ $json['Product type'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "d2f73f7a-6220-4a40-b869-e41e9755e3fc",
+              "leftValue": "={{ $json['Product type'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1504,
+        -1712
+      ],
+      "id": "fb139fb7-ad50-430c-9a9c-5e1f5935c332",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "edit",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-image-2.5-sunburst-2026-09-08",
+          "mode": "list",
+          "cachedResultName": "GPT-IMAGE-2.5-SUNBURST-2026-09-08"
+        },
+        "prompt": "=## ROLE\n\nYou are creating ONE professional Facebook image (1024x1024) for the Bangladeshi herbal pain relief oil brand Kasri Oil.\nThe image is either a PRODUCT ADVERTISEMENT or a QUIZ POST, depending on the MODE below.\n\n## CAMPAIGN INPUT\n\n* MODE: {{ String($('Limit').item.json.Model).toLowerCase().trim() === 'quiz' ? 'QUIZ POST' : 'PRODUCT ADVERTISEMENT' }}\n* TOPIC: {{ $('Limit').item.json.Topic }}\n{{ String($('Limit').item.json.Model).toLowerCase().trim() === 'quiz' ? '' : '* PRODUCT TYPE: ' + $('Limit').item.json['Product type'] }}\n* MODEL: {{ $('Limit').item.json.Model }}\n* LANGUAGE: {{ ['english','en','eng'].includes(String($json.Language).toLowerCase().trim()) ? 'English' : 'Bangla' }}\n\n## CREATIVE DIRECTION\n\n{{ String($('Limit').item.json.Model).toLowerCase().trim() === 'quiz' ? `This is a QUIZ POST, NOT a product advertisement.\n\nThe TOPIC tells you the SUBJECT of the quiz. Create ONE engaging, factually correct multiple-choice question about that subject, suitable for a Bangladeshi Facebook audience. The subject is usually about herbs, natural oils, traditional home remedies, body wellness or general health awareness. Keep the question simple and general-knowledge style. Never make a medical claim, never promise a cure, and never mention any disease treatment as fact.\n\nDESIGN STYLE: clean, modern, premium social-media quiz poster. Think of a professional brand quiz card: lots of white space, strong hierarchy, only 2 to 3 colors, perfectly aligned, easy to read on a phone in 2 seconds.\n\nCOLOR SYSTEM:\n* Background: clean white or very light off-white, with an extremely subtle soft texture or gradient. No busy patterns.\n* Use the main brand color from the Kasri Oil logo for the title, the letter badges and small accents.\n* Use ONE warm gold / yellow accent color for the thin borders of the option boxes.\n* Text color: dark charcoal / near-black.\n* Do not use more than these colors in the design (the raw material photo is the only exception).\n\nLAYOUT (1024x1024):\n1. TOP-LEFT: the Kasri Oil logo, small, with a comfortable margin.\n2. TOP-CENTER (below the logo area): the QUIZ TITLE in large, bold display lettering in the brand color. It must be clearly the biggest text in the image, but NOT oversized: keep it moderate, about 60 to 70 percent of the size a poster headline would normally be, so it never dominates the whole image. Directly under it, the SUBTITLE in small, regular, dark text, centered, in one line or two evenly balanced lines.\n3. LEFT HALF (middle): the QUESTION in medium-large, semi-bold, dark text, left-aligned, maximum 2 lines. It must be noticeably smaller than the title, but clearly larger than the option text.\n4. Below the question, still on the LEFT HALF: the 4 answer options stacked vertically with equal height and equal spacing. Each option row = a solid brand-color square badge with the white bold letter (A, B, C, D) on the left, attached to a white rounded rectangle with a thin gold border, containing the option text in dark, REGULAR weight (NOT bold), left-aligned. The option text must be smaller than the question text. All 4 rows must have exactly the same size and style.\n5. RIGHT HALF: ONE large, hero-quality, photorealistic top-down photograph of the RAW MATERIAL mentioned in the TOPIC (see RAW MATERIAL IMAGE RULES), occupying roughly 45 to 50 percent of the image width, bleeding slightly off the right and bottom edges, arranged on a natural surface (for example a checkered cotton cloth or a clean wooden surface). A few loose pieces of the raw material may be scattered or falling near the main bowl for a dynamic, fresh feeling. Soft natural daylight, rich realistic texture, shallow realistic shadows.\n6. BOTTOM-LEFT: a small, tidy footer with a small phone icon and the PHONE number, and the WEBSITE below or beside it, small and neat. Must not overlap anything.\n\nRAW MATERIAL IMAGE RULES:\n* Look at the TOPIC. If it mentions a natural raw material or ingredient (for example mustard seeds / সরিষা, mustard oil / সরিষার তেল, coconut oil / নারকেল তেল, black seed / কালোজিরা, garlic / রসুন, ginger / আদা, turmeric / হলুদ, fenugreek / মেথি, camphor / কর্পূর, eucalyptus leaves, mint, neem leaves, herbs, spices), show ONLY that raw material as a loose, open, natural item.\n* Show it in a plain open container or directly on a surface: for example oil poured in a plain open glass bowl with a wooden dipper; seeds, spices and herbs in an open wooden bowl or spread on a cloth with a wooden scoop; fresh leaves and roots arranged on a clean wooden surface.\n* ABSOLUTELY NO product packaging of any kind: no jar, no bottle, no packet, no pouch, no sachet, no box, no carton, no can, no tin, no sealed container, no label, no sticker, no cap or lid with branding. This applies even if the TOPIC mentions a product name or brand name (including Kasri Oil itself): in that case show only the plain raw material itself, never the packaged product.\n* No brand name, no logo (other than the Kasri Oil logo at top-left) and no printed text anywhere in the photo.\n* Show only what the TOPIC mentions. Do not add unrelated items.\n* If the TOPIC does NOT mention any raw material, do NOT add any photo. Instead, keep the right side clean with a subtle decorative shape in the brand color.\n* The photo must never cover, touch or overlap any text, the logo or the option rows.\n\nOTHER RULES:\n* Do NOT include any person, face, hands or body parts.\n* Do NOT add QR codes, extra icons, badges, stickers or any extra text.\n* Do NOT show any packaged product, packet, box, bottle, jar or pouch anywhere in the image. Only open, loose, natural items are allowed, and only when the TOPIC mentions them.\n* Everything except the text must look like a real, high-quality commercial photograph.` : `The TOPIC is the central idea of this image. Use it to decide:\n\n* The scene, setting, background, mood, lighting and color palette\n* How the product is presented (hero shot, in-use, lifestyle)\n* The pose, expression, clothing and activity of the model (if a model is used)\n* Which extra supporting elements to add (for example: raw herbs and ingredients, mustard seeds, leaves, a wooden bowl, seasonal items, family or home settings, natural props) only if they clearly support the topic and the product\n\nRules:\n\n* The product (the Kasri Oil bottle) must always remain the visual hero.\n* Extra elements must never cover, overlap or compete with the product, the logo or the text.\n* This is a pain relief oil. Show a person only in a calm, comfortable, everyday situation (for example relaxing at home, a gentle massage-style or wellness mood). Never show a person in visible pain or distress, never show medical equipment, bandages, injuries, doctors or hospital settings, and never imply a cure or treatment.\n* Keep the layout clean, uncluttered and premium, suitable for a Bangladeshi audience.\n* Everything must look like a real, high-quality commercial photograph.` }}\n\n---\n\n## REFERENCE IMAGES — ABSOLUTE PRIORITY\n\n{{ String($('Limit').item.json.Model).toLowerCase().trim() === 'quiz' || ['', 'none', 'no', 'n/a'].includes(String($('Limit').item.json['Product type'] || '').toLowerCase().trim()) ? `Only ONE reference image is used:\n\n* IMAGE 1 = the brand LOGO (Kasri Oil)\n\nIf any other image (such as a product or packaging image) is attached, COMPLETELY IGNORE it. Do not show that product, its packaging, jar, bottle, packet, pouch or box anywhere in the image, not even partially or in the background.\n\nNO PACKAGING RULE: Absolutely no packet, pouch, box, jar, bottle, sachet, can or any branded or packaged product anywhere in the image. Only loose, open, natural items (for example mustard seeds in a plain wooden bowl, oil in an open glass bowl) are allowed, and only if the TOPIC mentions them. No printed packaging, no product label, no other brand logo.\n\nLOGO (IMAGE 1) — MANDATORY:\n\n* The logo MUST appear in the image. Use it exactly as it appears. Do NOT redraw, recolor, distort, stretch, crop, or add effects or shadows.\n* Place it flat, clean and fully visible.\n\nPLACEMENT:\n\n* LOGO: top-left corner, small and clean, with a comfortable margin from the edges.\n* Nothing may overlap the logo.` : `Two reference images are used:\n\n* IMAGE 1 = the brand LOGO (Kasri Oil)\n* IMAGE 2 = the PRODUCT (Kasri Oil bottle/packaging)\n\nLOGO (IMAGE 1) — MANDATORY:\n\n* The logo MUST appear in the image. Use it exactly as it appears. Do NOT redraw, recolor, distort, stretch, crop, or add effects or shadows.\n* Place it flat, clean and fully visible, in the top-left corner, small, with a comfortable margin from the edges. Nothing may overlap the logo.\n\nPRODUCT (IMAGE 2) — MANDATORY:\n\n* The product MUST appear in the image exactly as in the reference: same shape, same colors, same label, same printed text, same proportions. Do NOT redraw, redesign, recolor, distort, crop, mirror or alter the packaging, label or any printed text in any way.\n* Show the product only ONCE, large, sharp, fully visible and clearly the hero of the image, with natural realistic shadows and reflections.\n* Do not place any other packaged product, bottle, jar, box or pouch in the image.\n* Nothing may cover or overlap the product.` }}\n\n---\n\n## MODEL\n\n{{ String($('Limit').item.json.Model).toLowerCase().trim() === 'quiz' ? `Do NOT include any person, face, hands or body parts. This is a quiz post.` : ['female','woman','f'].includes(String($('Limit').item.json.Model).toLowerCase().trim()) ? `Include ONE Bangladeshi woman as the model.\n\nShe must have a bright, light, even, natural and healthy complexion with realistic Bangladeshi facial features, natural skin texture, soft smooth skin and a photorealistic look.\nThe brightness must come from natural daylight and healthy skin, NOT from artificial whitening, over-exposure or heavy retouching.\nDo NOT make her skin dark, dull, grey, overly tanned, uneven, plastic, porcelain or CGI-looking.\nHer clothing, age, expression and activity must match the TOPIC.\nKeep her facial identity, skin tone and hair visually consistent across the campaign.` : ['male','man','m'].includes(String($('Limit').item.json.Model).toLowerCase().trim()) ? `Include ONE Bangladeshi man as the model.\n\nHe must have a healthy, even, natural complexion with realistic Bangladeshi facial features, natural skin texture and a photorealistic look.\nDo NOT make his skin look plastic, CGI-looking, over-retouched, grey or unevenly lit.\nHis clothing, age, expression and activity must match the TOPIC.\nKeep his facial identity, skin tone and hair visually consistent across the campaign.` : ['none','no','product only','only product','product_only'].includes(String($('Limit').item.json.Model).toLowerCase().trim()) ? `Do NOT include any person, face, hands or body parts. This is a product-only advertisement. Build the scene using the product, a fitting background and topic-related props only.` : `The model is not specified. Decide from the TOPIC whether the image is best with a Bangladeshi woman, a Bangladeshi man, or product only (no person).\nIf a person is included, they must look natural, healthy, photorealistic, with realistic Bangladeshi features and natural skin texture (no plastic or over-retouched look), and their clothing and activity must match the TOPIC.` }}\n\n---\n\n## TEXT & TYPOGRAPHY — ABSOLUTE PRIORITY\n\n{{ ['english','en','eng'].includes(String($json.Language).toLowerCase().trim()) ? `LANGUAGE RULE: ENGLISH ONLY.\n\nEVERY piece of text that you add to this image must be written in English only.\nDo NOT use any Bengali characters anywhere in the added text.\nDo NOT mix Bengali and English.\n(The text printed on the original product packaging and the logo come from the reference images and must stay exactly as they are. Never modify them.)` : `LANGUAGE RULE: BANGLA ONLY.\n\nEVERY piece of text that you add to this image must be written in Bengali script only.\nDo NOT use English words in the added text. The only exceptions are the phone number, the website address, and (in a quiz) the option letters A, B, C, D.\nDo NOT mix Bengali and English.\n(The text printed on the original product packaging and the logo come from the reference images and must stay exactly as they are. Never modify them.)` }}\n\nFIXED TEXT (always exactly as written, never changed):\n\nPHONE: **PUT-KASRI-PHONE-NUMBER-HERE**\nWEBSITE: **www.kasrioil.com**\n\n{{ String($('Limit').item.json.Model).toLowerCase().trim() === 'quiz' ? `### QUIZ TEXT RULES\n\nALLOWED TEXT ELEMENTS (ONLY these, nothing else):\n\n1. QUIZ TITLE\n2. SUBTITLE\n3. QUESTION\n4. FOUR ANSWER OPTIONS (each with its letter badge)\n5. PHONE (with a small phone icon beside it)\n6. WEBSITE\n\nQUIZ TITLE: ${['english','en','eng'].includes(String($json.Language).toLowerCase().trim()) ? 'Special Quiz' : 'স্পেশাল কুইজ'}\n(Use a different title ONLY if the TOPIC explicitly gives one, for example a day-specific title such as \"Title: ফ্রাইডে স্পেশাল কুইজ\".)\n(The title is the largest text in the image, but keep it moderate in size, not huge. Bold weight, not extra bold.)\n\nTEXT SIZE ORDER (strictly follow): TITLE (largest) > QUESTION (medium-large, semi-bold) > OPTION TEXT (regular weight, smaller than the question) > SUBTITLE (small) > PHONE and WEBSITE (smallest).\n\nSUBTITLE: ${['english','en','eng'].includes(String($json.Language).toLowerCase().trim()) ? 'Comment your answer below' : 'কমেন্টে জানিয়ে দিন সঠিক উত্তর'}\n\nQUESTION AND OPTIONS:\n\n* There must ALWAYS be EXACTLY 4 options, labelled A, B, C, D, one per row. Never 2, 3 or 5.\n* If the TOPIC already gives the exact question and/or options, use the given text EXACTLY, character by character:\n  * If the TOPIC gives 4 options, use those 4 as they are.\n  * If the TOPIC gives fewer than 4 options, keep the given ones unchanged and create the missing ones yourself so the total is exactly 4.\n  * If the TOPIC gives more than 4 options, use only the first 4.\n  * If the TOPIC gives a question but no options, create all 4 options yourself.\n* If the TOPIC gives only a subject, create the question yourself:\n  * ONE clear, short question (maximum about 12 words), factually correct, general-knowledge style, with no medical claim.\n  * Create all 4 options yourself, each only 1 to 3 words.\n* EXACTLY ONE option is correct. The wrong options must be believable but clearly wrong to someone who knows the answer.\n* If you create the options, place the correct answer at a random position (not always A).\n* NEVER reveal, mark, highlight, tick or hint at the correct answer anywhere in the image. All 4 options must look identical in style.\n* Do NOT add any explanation, answer text, hashtags, prizes, offers, CTA or extra caption.\n\nUse exactly this wording and nothing more. Treat the quiz text as fixed source text.` : `ALLOWED TEXT ELEMENTS (ONLY these three, nothing else):\n\n1. ONE CAPTION (see CAPTION RULES below)\n2. PHONE: **PUT-KASRI-PHONE-NUMBER-HERE**\n3. WEBSITE: **www.kasrioil.com**\n\nThe phone number and website must always appear exactly as written, never changed.\nThere must be NO headline, NO secondary headline, NO subtitle, NO tagline, NO extra line of text of any kind.\n\nNO CTA / NO ORDER BUTTON:\n\n* Do NOT add any call-to-action text, button, sticker, badge, ribbon, burst or banner.\n* Do NOT write \"Order Now\", \"Buy Now\", \"এখনই অর্ডার করুন\", \"অর্ডার করুন\" or any similar phrase anywhere in the image.\n* Do NOT add any extra offer tags, discount stickers, labels or captions.\n\nCAPTION RULES:\n\nCASE 1 — The TOPIC specifies exact text to show in the image (for example text written inside quotation marks, or a sentence the TOPIC clearly says to write on the image):\n\n* That text is the ONLY caption. It is LOCKED and must be reproduced EXACTLY, character by character, in the same language as given in the TOPIC.\n* Do NOT add, write or invent ANY other text in the image. No extra caption, no headline, no slogan. Only this text (plus the phone number and website).\n\nCASE 2 — The TOPIC does NOT specify any text:\n\n* Based on the TOPIC, write ONE very short caption (2 to 5 words maximum), natural and correctly spelled, in the language set by the LANGUAGE RULE. Use only simple, commonly used words.\n* The caption must NOT contain any medical claim, cure claim, disease name or guaranteed result (for example never \"cures pain\", \"100% relief\", \"ব্যথা সম্পূর্ণ দূর\"). Keep it soft and general (for example about comfort, tradition, natural care).\n* This single caption is the only text besides the phone number and website.\n\nIn both cases there must be only ONE caption in the whole image.` }}\n\n### TEXT LOCK RULES\n\nTreat every character of the final text as fixed source text.\n\nDO NOT:\n\n* Change, add, remove or replace any letter, vowel sign, consonant or conjunct (যুক্তাক্ষর)\n* Change spelling, translate or paraphrase the locked text\n* Switch to a different language than the LANGUAGE RULE above\n* Use Hindi/Devanagari\n* Generate pseudo-letters, decorative unreadable text, or random/gibberish text\n* Add any text that is not listed under ALLOWED TEXT ELEMENTS above\n* Add any CTA, order button, sticker, badge, ribbon or banner (for example \"Order Now\", \"এখনই অর্ডার করুন\", \"অর্ডার করুন\")\n\n### TYPOGRAPHY QUALITY\n\nUse a clean, professional, highly legible advertising font suited to the language. Characters must be correctly shaped, properly joined and spaced, clearly readable, professionally aligned and high resolution. Place text in clean areas that do not cover the product, logo, supporting image or the model's face. Before producing the final image, internally verify every word.\n\n### IMPORTANT FALLBACK\n\nIf you cannot render the text with 100% accuracy, DO NOT invent or approximate characters. Leave the designated text areas completely clean and empty so the exact text can be added later as a digital overlay. A clean empty text area is ALWAYS preferable to incorrect text. The visual design, photography and composition must remain unchanged even if the text area is left empty.",
+        "images": {
+          "values": [
+            {
+              "binaryPropertyName": "logo"
+            }
+          ]
+        },
+        "quality": "high",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        -1056,
+        -1872
+      ],
+      "id": "95f492eb-2269-41fc-ae39-e0aeebd88327",
+      "name": "Edit image1",
+      "credentials": {
+        "openAiApi": {
+          "id": "aBJTNhj3LPDVM39W",
+          "name": "OpenAI account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1l6aoYkRw0PerGs7kESMjShvUNrriHpiv",
+          "mode": "list",
+          "cachedResultName": "Kasri logo",
+          "cachedResultUrl": "https://drive.google.com/file/d/1l6aoYkRw0PerGs7kESMjShvUNrriHpiv/view?usp=drivesdk"
+        },
+        "options": {
+          "binaryPropertyName": "logo",
+          "fileName": "logo"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1312,
+        -1872
+      ],
+      "id": "d7fa2945-83fa-4aeb-a70c-cca244566d47",
+      "name": "Download logo1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FkDT1jLNlB8M4pku",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "resize",
+        "width": 1080,
+        "height": 1350,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        -656,
+        -1888
+      ],
+      "id": "f852cf9a-100c-497b-9e3f-7952a2ab254e",
+      "name": "Resize Image1"
+    },
+    {
+      "parameters": {
+        "operation": "resize",
+        "width": 1080,
+        "height": 1350,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        -1648
+      ],
+      "id": "b77d109f-8c45-41a1-a8df-8b222756f251",
+      "name": "Resize Image"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Edit image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download logo": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily 10 AM": {
+      "main": [
+        [
+          {
+            "node": "Read Content Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Content Calendar": {
+      "main": [
+        [
+          {
+            "node": "new?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search files and folders": {
+      "main": [
+        [
+          {
+            "node": "Download product1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download product1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "new?": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit image": {
+      "main": [
+        [
+          {
+            "node": "Resize Image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Upload image in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload image in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Upload image in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Download logo1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Download logo",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Search files and folders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit image1": {
+      "main": [
+        [
+          {
+            "node": "Resize Image1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download logo1": {
+      "main": [
+        [
+          {
+            "node": "Edit image1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resize Image": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resize Image1": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "timezone": "Asia/Dhaka",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "16a7754f-1d82-45aa-8431-ddd09e5017a1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "bf8a662ff634faacc3d58804a0ab66e91780218e86ee2e0e63dfe4bff87df8e5"
+  },
+  "nodeGroups": [],
+  "id": "pz3cvY59ewX8WUVK",
+  "tags": []
+}
