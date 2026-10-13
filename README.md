@@ -1,17 +1,17 @@
-# Facebook Ad Auto-Poster & Picture Generation (n8n)
+# Facebook Ad Auto-Poster & picture generation (n8n)
 
-An end-to-end n8n workflow that turns a Google Sheets content calendar into finished Facebook posts for **Kasri**, a Bangladeshi natural pain-relief oil brand. It generates the ad image with OpenAI, writes the caption, publishes to a Facebook Page, and logs everything back to the sheet, with no manual steps.
-<img width="1863" height="362" alt="image" src="https://github.com/user-attachments/assets/0077719e-ab56-4c69-8f91-3b6f14a5e7a6" />
+An end-to-end n8n workflow that turns a Google Sheets content calendar into finished Facebook posts for a Bangladeshi natural pain-relief oil brand. It generates the ad image with OpenAI, writes the caption, publishes to a Facebook Page, and logs everything back to the sheet, with no manual steps.
+<img width="1863" height="362" alt="image" src="https://github.com/user-attachments/assets/09fe9d50-5c10-4068-9aa1-ab62c66b59eb" />
 
 ## What it does
 
 Twice a day (10:00 and 20:00), the workflow:
 
 1. Reads the next unprocessed row from the content calendar (Google Sheets).
-2. Generates a branded **1024x1024 ad image** (or a **quiz post**) with an OpenAI image model, using the Kasri logo and the real product photo as references.
+2. Generates a branded **1024x1024 ad image** (or a **quiz post**) with an OpenAI image model, using the brand logo and the real product photo as references.
 3. Resizes the image to **1080x1350** (Facebook portrait format).
 4. Saves the image to Google Drive.
-5. Writes a short **Bangla or English caption** with an OpenAI text model (hook question, Kasri answer, safety note, CTA), then appends a fixed contact footer.
+5. Writes a short **Bangla or English caption** with an OpenAI text model (hook question, product answer, safety note, CTA), then appends a fixed contact footer.
 6. Publishes the photo and caption to the Facebook Page via the Graph API.
 7. Updates the sheet with status, caption, image link, post link and timestamp.
 
